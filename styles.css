@@ -767,3 +767,91 @@ a {
     justify-self: start;
   }
 }
+/* ===== FINAL HERO POLISH (PASTE AT END) ===== */
+
+/* Layout balance */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 70px;
+  align-items: center;
+}
+
+/* Left text control */
+.hero-copy {
+  max-width: 520px;
+}
+
+/* Heading refinement */
+.hero h1 {
+  font-size: clamp(2.8rem, 4.5vw, 4.8rem);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+/* Highlight text */
+.hero h1 span {
+  font-weight: 700;
+}
+
+/* Buttons spacing */
+.cta-row {
+  margin-top: 28px;
+  gap: 16px;
+}
+
+/* Right panel spacing */
+.hero-panel {
+  max-width: 420px;
+  width: 100%;
+  gap: 18px;
+}
+
+/* Cards polish */
+.stat-card {
+  padding: 18px 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(14px);
+}
+
+/* Strong card */
+.stat-card.accent {
+  background: linear-gradient(135deg, #1a4ed8, #2563eb);
+}
+
+/* Mini blocks (fix faded look) */
+.mini-block {
+  background: rgba(255,255,255,0.9);
+  color: #1d5eff;
+  font-weight: 600;
+  border-radius: 14px;
+}
+
+/* Navbar clarity */
+.brand,
+.nav-links a {
+  color: #ffffff;
+}
+
+/* Mobile fix */
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-copy {
+    max-width: 100%;
+  }
+
+  .hero-panel {
+    justify-self: start;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 8vw, 3.5rem);
+  }
+}
