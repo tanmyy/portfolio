@@ -1301,31 +1301,33 @@
   </div>
 
   <!-- RIGHT -->
-  <div class="hero-services">
-    <div style="width:100%; text-align:center;">
-      <h3 style="color:white; margin-bottom:15px;">Align My Skills 🎮</h3>
+ <div class="hero-services">
 
-      <div id="grid" style="
-        display:grid;
-        grid-template-columns: repeat(3, 80px);
-        gap:12px;
-        justify-content:center;
-      ">
-        <div class="cell video">Reels</div>
-        <div class="cell design">Posters</div>
-        <div class="cell social">Growth</div>
+  <div style="width:100%; text-align:center;">
 
-        <div class="cell design">Branding</div>
-        <div class="cell social">Content</div>
-        <div class="cell video">Ads</div>
+    <div id="grid" style="
+      display:grid;
+      grid-template-columns: repeat(3, 80px);
+      gap:12px;
+      justify-content:center;
+    ">
 
-        <div class="cell social">Strategy</div>
-        <div class="cell video">Transitions</div>
-        <div class="cell design">Thumbnails</div>
-      </div>
+      <div class="cell video">Reels</div>
+      <div class="cell design">Posters</div>
+      <div class="cell social">Growth</div>
 
-      <p id="result" style="margin-top:15px; font-weight:bold;"></p>
+      <div class="cell design">Branding</div>
+      <div class="cell social">Content</div>
+      <div class="cell video">Ads</div>
+
+      <div class="cell social">Strategy</div>
+      <div class="cell video">Transitions</div>
+      <div class="cell design">Thumbnails</div>
+
     </div>
+
+    <p id="result" style="margin-top:15px; font-weight:bold;"></p>
+
   </div>
 
 </div>
@@ -1732,7 +1734,7 @@
     <span>Video Editor · Graphic Designer · Brand Creator</span>
     <span>© 2026</span>
   </footer>
-            <style>
+           <style>
 .cell {
   height:80px;
   display:flex;
@@ -1741,8 +1743,11 @@
   border-radius:10px;
   font-size:11px;
   font-weight:bold;
-  cursor:pointer;
-  transition:0.3s;
+
+  transition: transform 0.6s ease, box-shadow 0.4s ease;
+  will-change: transform;
+
+  animation: float 4s ease-in-out infinite;
 }
 
 /* colors */
@@ -1750,27 +1755,62 @@
 .design { background:#ffc300; color:black; }
 .social { background:#E1306C; color:white; }
 
-.cell:hover {
-  transform:scale(1.08);
+/* floating animation */
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
 }
 
-.win {
-  box-shadow:0 0 15px white;
+/* variation (feels alive) */
+.cell:nth-child(odd) { animation-delay: 0.2s; }
+.cell:nth-child(even) { animation-delay: 0.4s; }
+
+/* frozen row */
+.frozen {
+  animation: none;
+  transform: scale(1.08);
+  box-shadow: 0 0 20px rgba(255,255,255,0.8);
 }
 </style>
-
-<script>
-// shuffle
+  <script>
 const grid = document.getElementById("grid");
-let items = Array.from(grid.children);
-items.sort(() => Math.random() - 0.5);
-items.forEach(el => grid.appendChild(el));
+let interval;
+let paused = false;
 
-// logic
-function checkWin() {
+function shuffle() {
+  if (paused) return;
+
+  let items = Array.from(grid.children);
+  let movable = items.filter(el => !el.classList.contains("frozen"));
+
+  // smooth shrink before move
+  movable.forEach(el => {
+    el.style.transform = "scale(0.9)";
+  });
+
+  setTimeout(() => {
+    movable.sort(() => Math.random() - 0.5);
+
+    let i = 0;
+    items.forEach(el => {
+      if (!el.classList.contains("frozen")) {
+        grid.appendChild(movable[i]);
+        i++;
+      }
+    });
+
+    // expand back
+    movable.forEach(el => {
+      el.style.transform = "scale(1)";
+    });
+
+    checkRows();
+  }, 300);
+}
+
+function checkRows() {
   const cells = document.querySelectorAll(".cell");
   const result = document.getElementById("result");
-  result.innerText = "";
 
   const rows = [
     [0,1,2],
@@ -1778,7 +1818,7 @@ function checkWin() {
     [6,7,8]
   ];
 
-  cells.forEach(c => c.classList.remove("win"));
+  let completedRows = 0;
 
   rows.forEach(row => {
     let types = row.map(i => {
@@ -1787,45 +1827,46 @@ function checkWin() {
       if (cells[i].classList.contains("social")) return "social";
     });
 
-    if (types.every(t => t === "video")) {
-      row.forEach(i => cells[i].classList.add("win"));
-      result.innerText = "🎬 Video Editing";
-    }
+    if (types.every(t => t === types[0])) {
+      completedRows++;
 
-    if (types.every(t => t === "design")) {
-      row.forEach(i => cells[i].classList.add("win"));
-      result.innerText = "🎨 Graphic Design";
-    }
+      row.forEach(i => {
+        cells[i].classList.add("frozen");
+      });
 
-    if (types.every(t => t === "social")) {
-      row.forEach(i => cells[i].classList.add("win"));
-      result.innerText = "📱 Social Media";
+      showResult(types[0]);
     }
   });
+
+  if (completedRows === 3) {
+    paused = true;
+    clearInterval(interval);
+
+    setTimeout(() => {
+      resetGame();
+    }, 5000);
+  }
 }
 
-// swap
-let selected = null;
+function showResult(type) {
+  const result = document.getElementById("result");
 
-document.querySelectorAll(".cell").forEach(cell => {
-  cell.addEventListener("click", () => {
-    if (!selected) {
-      selected = cell;
-      cell.style.outline = "2px solid white";
-    } else {
-      let temp = document.createElement("div");
-      selected.parentNode.insertBefore(temp, selected);
-      cell.parentNode.insertBefore(selected, cell);
-      temp.parentNode.insertBefore(cell, temp);
-      temp.remove();
+  if (type === "video") result.innerText = "🎬 Video Editing";
+  if (type === "design") result.innerText = "🎨 Graphic Design";
+  if (type === "social") result.innerText = "📱 Social Media";
+}
 
-      selected.style.outline = "none";
-      selected = null;
+function resetGame() {
+  const cells = document.querySelectorAll(".cell");
 
-      checkWin();
-    }
-  });
-});
+  cells.forEach(c => c.classList.remove("frozen"));
+
+  paused = false;
+  interval = setInterval(shuffle, 1200);
+}
+
+// start
+interval = setInterval(shuffle, 1200);
 </script>
 
 </body>
