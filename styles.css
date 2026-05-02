@@ -685,3 +685,45 @@ a {
     text-align: center;
   }
 }
+/* 🔥 PASTE THIS AT THE VERY END OF YOUR CSS FILE */
+
+/* 1. FORCE TEXT VISIBILITY */
+.hero h1 {
+  color: #ffffff !important;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.brand,
+.nav-links a {
+  color: #ffffff !important;
+}
+
+/* 2. REMOVE DARK OVERLAY EFFECT */
+.hero::before {
+  background: none !important;
+}
+
+/* 3. ENSURE CONTENT IS ABOVE EVERYTHING */
+.topbar,
+.hero-grid {
+  position: relative;
+  z-index: 2;
+}
+
+/* 4. BUTTON FIX */
+.button-primary {
+  background: #ffffff !important;
+  color: #1d5eff !important;
+}
+
+.button-secondary {
+  background: transparent !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,0.6);
+}
+
+/* 5. QUICK DEBUG (REMOVE LATER) */
+.hero {
+  opacity: 1 !important;
+}
