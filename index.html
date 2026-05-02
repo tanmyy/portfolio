@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tanmay Kataria — Video Editor & Designer</title>
+  <meta name="description" content="Portfolio of Tanmay Kataria — brand design, video editing, visual content for modern businesses." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:     #0d0d0d;
+      --ink-60:  #0d0d0d99;
+      --ink-20:  #0d0d0d33;
+      --ink-10:  #0d0d0d1a;
+      --paper:   #f5f2ec;
+      --paper-2: #ede9e1;
+      --white:   #ffffff;
+      --electric:#0033ff;
+      --electric-pale: #e5ebff;
+      --electric-mid:  #99aaff;
+      --coral:   #ff4b26;
+      --sage:    #2d6a4f;
+      --radius:  12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    section {
+      padding: 100px 48px;
+    }
+
+    /* Constrain inner content on wide screens */
+    .work-header, .project-grid, .project-detail,
+    .caps-grid, .about-grid, .testi-intro, .testi-grid,
+    .section-label, h2.display, .body-text {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── NAVBAR ─────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: var(--paper);
+      border-bottom: 1px solid var(--ink-10);
+      backdrop-filter: blur(6px);
+    }
+
+    .nav-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      color: var(--electric);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links a {
+      color: var(--ink-60);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .nav-cta {
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 9px 20px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-cta:hover { background: var(--electric); transform: translateY(-1px); }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 48px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+      background: var(--ink);
+      width: 100%;
+    }
+
+    .hero-bg-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(160px, 22vw, 320px);
+      color: rgba(255,255,255,0.04);
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: flex-end;
+      width: 100%;
+    }
+
+    .hero-copy {
+      padding: 22px 0 10px;
+      max-width: 600px;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.25);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(56px, 7.5vw, 148px);
+      line-height: 0.92;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      max-width: 900px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--electric-mid);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 24px;
+      padding-bottom: 6px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+
+    .hero-tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      padding: 5px 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+    }
+
+    .hero-tags-mobile {
+      display: none;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 52px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--ink);
+    }
+    .btn-primary:hover { background: var(--electric-pale); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.6); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      right: 48px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* ─── SECTIONS ───────────────────────────────────────── */
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--electric);
+      margin-bottom: 40px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--ink-20);
+      max-width: 120px;
+    }
+
+    h2.display {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(48px, 6vw, 88px);
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+    }
+
+    .body-text {
+      font-size: 1.05rem;
+      color: var(--ink-60);
+      line-height: 1.7;
+      max-width: 56ch;
+    }
+
+    /* ─── WORK SECTION ───────────────────────────────────── */
+    #work { background: var(--paper); }
+
+    .work-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 64px;
+    }
+
+    .work-intro { align-self: start; }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .project-card {
+      position: relative;
+      background: var(--white);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      cursor: pointer;
+      transition: transform 0.3s;
+      border-radius: 20px;
+    }
+
+    .project-card:first-child { grid-column: span 2; aspect-ratio: 8/5; border-radius: 24px; }
+
+    .project-card:hover .project-overlay { opacity: 1; }
+    .project-card:hover img { transform: scale(1.04); }
+
+    .project-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .project-color-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .project-info {
+      position: relative;
+      z-index: 2;
+      padding: 24px;
+      color: var(--white);
+    }
+
+    .project-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      opacity: 0.5;
+      margin-bottom: 6px;
+    }
+
+    .project-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.04em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .project-desc {
+      font-size: 0.82rem;
+      opacity: 0.7;
+      line-height: 1.5;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .project-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Project detail panel */
+    .project-detail {
+      display: none;
+      margin-top: 2px;
+      background: var(--white);
+      padding: 60px 48px;
+    }
+
+    .project-detail:target { display: block; }
+
+    .detail-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      border: 1px solid var(--ink-20);
+      padding: 8px 16px;
+      border-radius: 999px;
+      margin-bottom: 48px;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .detail-back:hover { color: var(--electric); border-color: var(--electric); background: var(--electric-pale); }
+
+    .detail-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+      align-items: start;
+    }
+
+    .detail-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 6vw, 84px);
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+    }
+
+    .media-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .media-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .media-grid-3 img,
+    .media-grid-2 img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: var(--radius);
+      background: var(--paper-2);
+      display: block;
+    }
+
+    .media-grid-2 video {
+      width: 100%;
+      aspect-ratio: 9/16;
+      border-radius: var(--radius);
+      background: var(--ink);
+      display: block;
+    }
+
+    .media-section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      margin: 32px 0 14px;
+    }
+
+    .link-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .link-chip {
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--paper);
+      border: 1px solid var(--ink-20);
+      color: var(--ink);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .link-chip:hover { background: var(--electric-pale); border-color: var(--electric-mid); color: var(--electric); }
+
+    /* ─── CAPABILITIES ───────────────────────────────────── */
+    #capabilities {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    #capabilities .section-label { color: var(--electric-mid); }
+    #capabilities .section-label::after { background: rgba(255,255,255,0.1); }
+    #capabilities h2.display { color: var(--white); }
+    #capabilities .body-text { color: rgba(255,255,255,0.5); }
+
+    /* Blue accent line on section-label */
+    .section-label::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--electric);
+      border-radius: 2px;
+    }
+
+    #capabilities .section-label::before { background: var(--electric-mid); }
+
+    .caps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    .cap-card {
+      background: rgba(255,255,255,0.05);
+      padding: 36px 32px 32px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      transition: background 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .cap-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.16); }
+
+    /* Decorative shape per card */
+    .cap-card::before {
+      content: '';
+      position: absolute;
+      pointer-events: none;
+      opacity: 0.18;
+    }
+
+    .cap-card:nth-child(1)::before {
+      /* Play triangle — video editing — GREEN */
+      top: 20px; right: 24px;
+      width: 0; height: 0;
+      border-style: solid;
+      border-width: 24px 0 24px 42px;
+      border-color: transparent transparent transparent #22c55e;
+      opacity: 0.55;
+      border-radius: 0;
+      background: none;
+    }
+
+    .cap-card:nth-child(2)::before {
+      /* Diamond — graphic design — ORANGE */
+      top: 14px; right: 20px;
+      width: 44px; height: 44px;
+      background: #f97316;
+      border-radius: 8px;
+      transform: rotate(45deg);
+      opacity: 0.5;
+    }
+
+    .cap-card:nth-child(3)::before {
+      /* Circle — brand identity — BLUE */
+      top: 14px; right: 20px;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 4px solid #3b82f6;
+      background: rgba(59,130,246,0.15);
+      opacity: 0.8;
+    }
+
+    .cap-card:nth-child(4)::before {
+      /* Folded page — presentations — PURPLE */
+      top: 10px; right: 18px;
+      width: 40px; height: 52px;
+      background: rgba(168,85,247,0.2);
+      border-radius: 6px;
+      border: 2px solid rgba(168,85,247,0.55);
+      opacity: 1;
+    }
+
+    .cap-card:nth-child(5)::before {
+      /* Hexagon — product — RED/CORAL */
+      top: 12px; right: 18px;
+      width: 48px; height: 48px;
+      background: #ef4444;
+      opacity: 0.45;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      border-radius: 0;
+    }
+
+    .cap-card:nth-child(6)::before {
+      /* Lightning bolt — advertising — AMBER */
+      top: 10px; right: 22px;
+      width: 32px; height: 52px;
+      background: #f59e0b;
+      opacity: 0.55;
+      clip-path: polygon(60% 0%, 100% 0%, 40% 50%, 80% 50%, 0% 100%, 20% 52%, 0% 52%);
+      border-radius: 0;
+    }
+
+    .cap-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--electric-mid);
+      margin-bottom: 20px;
+    }
+
+    .cap-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.7rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .cap-body {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.65;
+    }
+
+    /* ─── ABOUT ──────────────────────────────────────────── */
+    #about { background: var(--paper-2); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-body p {
+      font-size: 1.08rem;
+      color: var(--ink-60);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .stat-box {
+      background: var(--white);
+      padding: 28px 24px;
+      border-radius: var(--radius);
+    }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.2rem;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      color: var(--electric);
+    }
+
+    .stat-desc {
+      font-size: 0.82rem;
+      color: var(--ink-60);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    .tools-box {
+      background: var(--electric);
+      padding: 28px 24px;
+      border-radius: var(--radius);
+      grid-column: span 2;
+    }
+
+    .tools-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 12px;
+    }
+
+    .tools-list {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    /* ─── TESTIMONIALS ───────────────────────────────────── */
+    #testimonials {
+      background: var(--paper-2);
+    }
+
+    .testi-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .testi-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 32px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+      border: 1px solid var(--ink-10);
+      transition: transform 0.2s;
+    }
+    .testi-card:hover { transform: translateY(-3px); }
+
+    /* Colored top accent bar per card */
+    .testi-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 28px; right: 28px;
+      height: 3px;
+      border-radius: 0 0 4px 4px;
+    }
+    .testi-card:nth-child(1)::before { background: #3b82f6; }
+    .testi-card:nth-child(2)::before { background: #22c55e; }
+    .testi-card:nth-child(3)::before { background: #f97316; }
+
+    .testi-quote {
+      font-size: 2rem;
+      line-height: 1;
+      color: var(--ink-20);
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 0;
+    }
+
+    .testi-text {
+      font-size: 0.98rem;
+      color: var(--ink-60);
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .testi-footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--ink-10);
+    }
+
+    .testi-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+      color: #fff;
+    }
+    .testi-card:nth-child(1) .testi-avatar { background: #3b82f6; }
+    .testi-card:nth-child(2) .testi-avatar { background: #22c55e; }
+    .testi-card:nth-child(3) .testi-avatar { background: #f97316; }
+
+    .testi-name {
+      font-weight: 500;
+      font-size: 0.92rem;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .testi-role {
+      font-size: 0.78rem;
+      color: var(--ink-60);
+      margin-top: 2px;
+    }
+
+    .testi-placeholder-note {
+      margin-top: 20px;
+      font-size: 0.82rem;
+      color: var(--ink-60);
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.04em;
+      text-align: center;
+      padding: 12px 20px;
+      border: 1px dashed var(--ink-20);
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    /* ─── CONTACT ────────────────────────────────────────── */
+    #contact {
+      background: var(--paper);
+      text-align: center;
+    }
+
+    #contact h2.display { font-size: clamp(60px, 8vw, 120px); }
+
+    .contact-email {
+      display: inline-block;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--electric);
+      border-bottom: 2px solid var(--electric);
+      padding-bottom: 2px;
+      margin-top: 36px;
+      transition: opacity 0.2s;
+    }
+    .contact-email:hover { opacity: 0.7; }
+
+    .contact-meta {
+      font-size: 0.88rem;
+      color: var(--ink-60);
+      margin-top: 16px;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.35);
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.06em;
+    }
+
+    .footer-brand {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
+      font-family: 'Bebas Neue', sans-serif;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links { display: none; }
+      section { padding: 72px 24px; }
+      .hero { padding: 100px 24px 48px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+      .hero-meta { display: none; }
+      .hero-copy { max-width: 100%; }
+      .hero h1 { font-size: clamp(36px, 10vw, 72px); max-width: 100%; line-height: 1.0; }
+      .hero-tags-mobile {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 24px;
+      }
+      .work-header { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .project-card:first-child { grid-column: span 2; }
+      .caps-grid { grid-template-columns: 1fr; gap: 12px; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .testi-intro { grid-template-columns: 1fr; gap: 24px; margin-bottom: 32px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .detail-header { grid-template-columns: 1fr; }
+      .media-grid-3 { grid-template-columns: 1fr 1fr; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+      .project-detail { padding: 40px 24px; }
+    }
+
+    @media (max-width: 560px) {
+      .project-grid { grid-template-columns: 1fr; }
+      .project-card:first-child { grid-column: span 1; aspect-ratio: 4/5; }
+      .media-grid-3, .media-grid-2 { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr; }
+      .tools-box { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
+    <a href="#home" class="nav-brand">TANMAY KATARIA</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#capabilities">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Let's Talk →</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-bg-text">DESIGN</div>
+    <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">
+          <span class="hero-dot"></span>
+          Available for freelance work
+        </div>
+        <h1>
+          Brand visuals, video editing &amp; <em>design</em>
+        </h1>
+        <div class="hero-cta-row">
+          <a href="#work" class="btn btn-primary">View Work →</a>
+          <a href="#contact" class="btn btn-outline">Let's Work Together</a>
+        </div>
+        <div class="hero-tags-mobile">
+          <span class="hero-tag">Video Editing</span>
+          <span class="hero-tag">Graphic Design</span>
+          <span class="hero-tag">Brand Identity</span>
+          <span class="hero-tag">Reels &amp; Ads</span>
+          <span class="hero-tag">Company Profiles</span>
+        </div>
+      </div>
+      <div class="hero-meta">
+        <div class="hero-tags">
+          <span class="hero-tag">Video Editing</span>
+          <span class="hero-tag">Graphic Design</span>
+          <span class="hero-tag">Brand Identity</span>
+          <span class="hero-tag">Reels &amp; Ads</span>
+          <span class="hero-tag">Company Profiles</span>
+        </div>
+      </div>
+    </div>
+    </div><!-- /.container -->
+    <div class="hero-scroll">
+      <span class="hero-scroll-line"></span>
+      Scroll to explore
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="work-header">
+      <div class="work-intro">
+        <div class="section-label">Featured Work</div>
+        <h2 class="display">Versatile across formats&nbsp;&amp; industries</h2>
+      </div>
+      <p class="body-text">
+        10+ months of real client work spanning kids branding, construction, product marketing, advertising, and freelance reels. Click any project to explore.
+      </p>
+    </div>
+
+    <div class="project-grid">
+
+      <!-- my1hour — large card -->
+      <a class="project-card" href="#project-my1hour">
+        <img class="project-img" src="./images/my1hour/victoryvalleykidsyoga (1).png" alt="my1hour" loading="lazy" />
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-num">01</div>
+          <div class="project-title">my1hour</div>
+          <p class="project-desc">10 months of content design, video editing &amp; kids branding</p>
+          <div class="project-tags">
+            <span class="project-tag">Content Design</span>
+            <span class="project-tag">Video Editing</span>
+            <span class="project-tag">Kids Logo</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- SKG Builders -->
+      <a class="project-card" href="#project-skg">
+        <div class="project-color-bg" style="background:linear-gradient(135deg,#f19172,#b8380f);">SKG</div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-num">02</div>
+          <div class="project-title">SKG Builders</div>
+          <p class="project-desc">Logo, deck &amp; letterhead for a construction brand</p>
+          <div class="project-tags">
+            <span class="project-tag">Logo Design</span>
+            <span class="project-tag">Brand Identity</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- AMCO -->
+      <a class="project-card" href="#project-amco">
+        <div class="project-color-bg" style="background:linear-gradient(135deg,#1f6c5c,#07372d);">AMCO</div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-num">03</div>
+          <div class="project-title">AMCO Industries</div>
+          <p class="project-desc">AI product visuals for 60+ SKUs &amp; three presentation decks</p>
+          <div class="project-tags">
+            <span class="project-tag">AI Product Visuals</span>
+            <span class="project-tag">Brochures</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Spiral -->
+      <a class="project-card" href="#project-spiral">
+        <img class="project-img" src="./videos/Spiral/12-Cover.jpg" alt="Spiral Growth Strategy" loading="lazy" />
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-num">04</div>
+          <div class="project-title">Spiral Growth</div>
+          <p class="project-desc">Freelance reel editing for online campaigns</p>
+          <div class="project-tags">
+            <span class="project-tag">Reels</span>
+            <span class="project-tag">Campaign Content</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Adometer -->
+      <a class="project-card" href="#project-adometer">
+        <div class="project-color-bg" style="background:linear-gradient(135deg,#0033ff,#001aaa);">ADS</div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-num">05</div>
+          <div class="project-title">Adometer</div>
+          <p class="project-desc">10-second DOOH ad creatives for fast attention</p>
+          <div class="project-tags">
+            <span class="project-tag">DOOH</span>
+            <span class="project-tag">Motion Design</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Melodiverse -->
+      <a class="project-card" href="#project-melodiverse">
+        <img class="project-img" src="./images/melodiverse/1.png" alt="Melodiverse" loading="lazy" />
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <div class="project-num">06</div>
+          <div class="project-title">Melodiverse</div>
+          <p class="project-desc">Brand visuals &amp; business cards with clean identity</p>
+          <div class="project-tags">
+            <span class="project-tag">Brand Visuals</span>
+            <span class="project-tag">Business Cards</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- ── PROJECT DETAILS ────────────────────────────── -->
+
+    <article id="project-my1hour" class="project-detail">
+      <a href="#work" class="detail-back">← Back to work</a>
+      <div class="detail-header">
+        <h2 class="detail-title">my1hour</h2>
+        <p class="body-text">A 10-month engagement covering content design, kids branding, post design, and short-form video editing for a fitness and lifestyle brand across different audience needs.</p>
+      </div>
+      <p class="media-section-label">Images</p>
+      <div class="media-grid-3">
+        <img src="./images/my1hour/Green and Black Modern We Are Hiring Gym Trainer Instagram Post (1).png" alt="my1hour design 1" loading="lazy" />
+        <img src="./images/my1hour/Grey and Yellow Modern Geometric Online Business Webinar Instagram Post (2).png" alt="my1hour design 2" loading="lazy" />
+        <img src="./images/my1hour/my1hour Strength Training Plan.png" alt="my1hour design 3" loading="lazy" />
+        <img src="./images/my1hour/Orange Black Illustrated Happy Dussehra Greeting Instagram Post (1).png" alt="my1hour design 4" loading="lazy" />
+        <img src="./images/my1hour/Services offered by my1hour (11).png" alt="my1hour design 5" loading="lazy" />
+        <img src="./images/my1hour/victoryvalleykidsyoga (1).png" alt="my1hour design 6" loading="lazy" />
+      </div>
+      <p class="media-section-label">Videos</p>
+      <div class="media-grid-2">
+        <video controls preload="none" poster="./images/my1hour/victoryvalleykidsyoga (3).png"><source src="./videos/my1hour/kidssyoga.mp4" type="video/mp4" /></video>
+        <video controls preload="none" poster="./images/my1hour/my1hour Strength Training Plan.png"><source src="./videos/my1hour/strenghttrainingreel2.mp4" type="video/mp4" /></video>
+      </div>
+      <p class="media-section-label">More videos</p>
+      <div class="link-chips">
+        <a class="link-chip" href="./videos/my1hour/1yearfin.mp4" target="_blank">1 Year Anniversary Reel ↗</a>
+        <a class="link-chip" href="./videos/my1hour/ajay intro(1).mp4" target="_blank">Coach Intro ↗</a>
+        <a class="link-chip" href="./videos/my1hour/checkwebsite.mp4" target="_blank">Website Promo ↗</a>
+        <a class="link-chip" href="./videos/my1hour/NNW2.mp4" target="_blank">Social Promo ↗</a>
+        <a class="link-chip" href="./videos/my1hour/Wall-E.mp4" target="_blank">Creative Reel ↗</a>
+      </div>
+    </article>
+
+    <article id="project-skg" class="project-detail">
+      <a href="#work" class="detail-back">← Back to work</a>
+      <div class="detail-header">
+        <h2 class="detail-title">SKG Builders</h2>
+        <p class="body-text">Designed a complete professional brand system for a construction-focused business — including logo, presentation deck, and letterhead for a cohesive identity across print and digital.</p>
+      </div>
+      <p class="media-section-label">Brand scope</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <span class="link-chip">Logo Design</span>
+        <span class="link-chip">Company Profile / Deck</span>
+        <span class="link-chip">Letterhead</span>
+        <span class="link-chip">Brand Identity System</span>
+      </div>
+    </article>
+
+    <article id="project-amco" class="project-detail">
+      <a href="#work" class="detail-back">← Back to work</a>
+      <div class="detail-header">
+        <h2 class="detail-title">AMCO Industries</h2>
+        <p class="body-text">AI-assisted product shoot visuals for 60+ SKUs and three presentation decks to communicate product lines clearly to buyers and distributors.</p>
+      </div>
+      <p class="media-section-label">Deliverables</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;">
+        <span class="link-chip">60+ AI Product Visuals</span>
+        <span class="link-chip">3 Presentation Decks</span>
+        <span class="link-chip">Brochure Design</span>
+        <span class="link-chip">Product Marketing</span>
+      </div>
+    </article>
+
+    <article id="project-spiral" class="project-detail">
+      <a href="#work" class="detail-back">← Back to work</a>
+      <div class="detail-header">
+        <h2 class="detail-title">Spiral Growth Strategy</h2>
+        <p class="body-text">Freelance reels and online-first edits shaped for clean pacing, strong hooks, and platform-ready delivery across social campaign content.</p>
+      </div>
+      <p class="media-section-label">Images</p>
+      <div class="media-grid-3">
+        <img src="./videos/Spiral/12-Cover.jpg" alt="Spiral cover 1" loading="lazy" />
+        <img src="./videos/Spiral/6 updated-Cover.jpg" alt="Spiral cover 2" loading="lazy" />
+        <img src="./videos/Spiral/7-Cover.jpg" alt="Spiral cover 3" loading="lazy" />
+      </div>
+      <p class="media-section-label">Videos</p>
+      <div class="media-grid-2">
+        <video controls preload="none" poster="./videos/Spiral/12-Cover.jpg"><source src="./videos/Spiral/12(low).mp4" type="video/mp4" /></video>
+        <video controls preload="none" poster="./videos/Spiral/spiral 4.2-Cover.jpg"><source src="./videos/Spiral/video1.mp4" type="video/mp4" /></video>
+      </div>
+      <p class="media-section-label">More videos</p>
+      <div class="link-chips">
+        <a class="link-chip" href="./videos/Spiral/4 final.mp4" target="_blank">Reel 1 ↗</a>
+        <a class="link-chip" href="./videos/Spiral/6 updated.mp4" target="_blank">Growth Strategy Edit ↗</a>
+        <a class="link-chip" href="./videos/Spiral/7.mp4" target="_blank">Social Performance Reel ↗</a>
+      </div>
+    </article>
+
+    <article id="project-adometer" class="project-detail">
+      <a href="#work" class="detail-back">← Back to work</a>
+      <div class="detail-header">
+        <h2 class="detail-title">Adometer</h2>
+        <p class="body-text">Short, high-impact DOOH creatives built to communicate fast and hold attention in a matter of seconds. Each ad distills a brand message to its sharpest form.</p>
+      </div>
+      <p class="media-section-label">Videos</p>
+      <div class="media-grid-2">
+        <video controls preload="none"><source src="./videos/Adometer/arigoy.mp4" type="video/mp4" /></video>
+        <video controls preload="none"><source src="./videos/Adometer/paushta bread ad.mp4" type="video/mp4" /></video>
+      </div>
+      <p class="media-section-label">More ads</p>
+      <div class="link-chips">
+        <a class="link-chip" href="./videos/Adometer/greenmilites.mp4" target="_blank">Greenmilites Ad ↗</a>
+        <a class="link-chip" href="./videos/Adometer/prembasket.mp4" target="_blank">Prembasket Ad ↗</a>
+        <a class="link-chip" href="./videos/Adometer/risingcareers.mp4" target="_blank">Rising Careers Ad ↗</a>
+      </div>
+    </article>
+
+    <article id="project-melodiverse" class="project-detail">
+      <a href="#work" class="detail-back">← Back to work</a>
+      <div class="detail-header">
+        <h2 class="detail-title">Melodiverse</h2>
+        <p class="body-text">Business card and identity-based visual work designed to give the brand a clean, memorable look across print and digital touchpoints.</p>
+      </div>
+      <p class="media-section-label">Images</p>
+      <div class="media-grid-3">
+        <img src="./images/melodiverse/1.png" alt="Melodiverse visual 1" loading="lazy" />
+        <img src="./images/melodiverse/2.png" alt="Melodiverse visual 2" loading="lazy" />
+        <img src="./images/melodiverse/melodiverse (3).png" alt="Melodiverse visual 3" loading="lazy" />
+      </div>
+    </article>
+
+  </section>
+
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <div class="section-label">Services</div>
+    <h2 class="display">What I<br>can help with</h2>
+    <div class="caps-grid">
+      <div class="cap-card">
+        <div class="cap-num">01</div>
+        <div class="cap-title">Video Editing</div>
+        <p class="cap-body">Reels, short-form edits, promo videos, poster campaigns, and content repurposing built for fast, platform-aware delivery.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-num">02</div>
+        <div class="cap-title">Graphic Design</div>
+        <p class="cap-body">Logos, digital graphics, branded posts, business cards, letterheads, and visual assets for online and offline use.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-num">03</div>
+        <div class="cap-title">Brand Identity</div>
+        <p class="cap-body">Logo systems, color palettes, and visual languages for businesses starting fresh or leveling up their look.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-num">04</div>
+        <div class="cap-title">Presentations &amp; Brochures</div>
+        <p class="cap-body">Company profiles, product brochures, and branded documents that present services and brand stories clearly.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-num">05</div>
+        <div class="cap-title">Product Content</div>
+        <p class="cap-body">AI-assisted product shoots and visual presentation work for large SKU catalogs and marketing materials.</p>
+      </div>
+      <div class="cap-card">
+        <div class="cap-num">06</div>
+        <div class="cap-title">Ad Creatives</div>
+        <p class="cap-body">Short, high-impact posters and DOOH creatives designed for fast visual impact and clear brand messaging.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About</div>
+    <div class="about-grid">
+      <div class="about-body">
+        <h2 class="display" style="margin-bottom:36px;">A creative<br>with range</h2>
+        <p>I'm a video editor and graphic designer focused on content that feels current, clean, and useful for real business goals. My work spans branding, digital content design, short-form video editing, company profiles, brochures, product visuals, and promotional creatives.</p>
+        <p>I enjoy working across different industries and content types. I use Canva and CapCut on PC to create polished visual content, brand assets, and fast-turnaround edits.</p>
+        <p>Open to freelance projects, remote work, and creative roles in Toronto, Mississauga, and beyond.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-num">10+</div>
+          <div class="stat-desc">months of continuous<br>client work</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">60+</div>
+          <div class="stat-desc">product SKUs<br>visualized</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">6</div>
+          <div class="stat-desc">industries<br>served</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">∞</div>
+          <div class="stat-desc">reels to cut,<br>brands to build</div>
+        </div>
+        <div class="tools-box">
+          <div class="tools-label">Tools</div>
+          <div class="tools-list">Canva · CapCut · AI Image Tools</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="testi-intro">
+      <div>
+        <div class="section-label">Client Feedback</div>
+        <h2 class="display">What clients<br>are saying</h2>
+      </div>
+      <p class="body-text">Real words from people and teams I've worked with. Placeholder cards are ready — swap in your actual testimonials when you collect them.</p>
+    </div>
+
+    <div class="testi-grid">
+
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Tanmay handled 10 months of content design for my1hour seamlessly. His ability to adapt across kids yoga, fitness reels, and social graphics — all while keeping the brand consistent — was impressive.</p>
+        <div class="testi-footer">
+          <div class="testi-avatar">AK</div>
+          <div>
+            <div class="testi-name">Add Client Name</div>
+            <div class="testi-role">my1hour · Fitness Brand</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">The product visuals Tanmay delivered for our catalog were sharp, professional, and ready to use across our marketing materials. Handled 60+ SKUs with no fuss and fast turnaround.</p>
+        <div class="testi-footer">
+          <div class="testi-avatar">AM</div>
+          <div>
+            <div class="testi-name">Add Client Name</div>
+            <div class="testi-role">AMCO Industries · Product Marketing</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Clean edits, strong hooks, and platform-ready delivery every time. Tanmay understood exactly what our reels needed and executed without back-and-forth.</p>
+        <div class="testi-footer">
+          <div class="testi-avatar">SG</div>
+          <div>
+            <div class="testi-name">Add Client Name</div>
+            <div class="testi-role">Spiral Growth Strategy · Freelance</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:32px;">
+      <span class="testi-placeholder-note">✦ Replace placeholder quotes with real client testimonials when ready</span>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label" style="justify-content:center;">Contact</div>
+    <h2 class="display">Let's build something people<br>actually remember.</h2>
+    <p class="body-text" style="margin:24px auto 0;text-align:center;">Reach out for freelance work, collaborations, or creative roles.</p>
+    <br>
+    <a href="mailto:tanmaykataria18@gmail.com" class="contact-email">tanmaykataria18@gmail.com</a>
+    <p class="contact-meta">Based in Mississauga, ON · Available for remote &amp; local projects</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">TANMAY KATARIA</span>
+    <span>Video Editor · Graphic Designer · Brand Creator</span>
+    <span>© 2025</span>
+  </footer>
+
+</body>
+</html>
