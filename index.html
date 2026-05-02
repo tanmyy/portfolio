@@ -24,6 +24,8 @@
       --electric-mid:  #99aaff;
       --coral:   #ff4b26;
       --sage:    #2d6a4f;
+      --banana:  #ffe135;
+      --banana-dark: #e6c800;
       --radius:  12px;
       --radius-lg: 20px;
     }
@@ -49,7 +51,6 @@
       padding: 100px 48px;
     }
 
-    /* Constrain inner content on wide screens */
     .work-header, .project-grid, .project-detail,
     .caps-grid, .about-grid, .testi-intro, .testi-grid,
     .section-label, h2.display, .body-text {
@@ -59,6 +60,104 @@
     }
 
     a { color: inherit; text-decoration: none; }
+
+    /* ─── JITTER ─────────────────────────────────────────── */
+    @keyframes jitter {
+      0%   { transform: translate(0, 0) rotate(0deg); }
+      10%  { transform: translate(-1px, -2px) rotate(-0.3deg); }
+      20%  { transform: translate(2px, 0px) rotate(0.5deg); }
+      30%  { transform: translate(-1px, 1px) rotate(-0.2deg); }
+      40%  { transform: translate(1px, -1px) rotate(0.3deg); }
+      50%  { transform: translate(-2px, 2px) rotate(-0.4deg); }
+      60%  { transform: translate(2px, 1px) rotate(0.2deg); }
+      70%  { transform: translate(-1px, -1px) rotate(-0.5deg); }
+      80%  { transform: translate(1px, 2px) rotate(0.3deg); }
+      90%  { transform: translate(-1px, 0px) rotate(-0.1deg); }
+      100% { transform: translate(0, 0) rotate(0deg); }
+    }
+
+    @keyframes jitter-soft {
+      0%   { transform: translate(0, 0); }
+      25%  { transform: translate(-0.5px, 1px); }
+      50%  { transform: translate(1px, -0.5px); }
+      75%  { transform: translate(-1px, 0.5px); }
+      100% { transform: translate(0, 0); }
+    }
+
+    @keyframes jitter-text {
+      0%   { transform: skewX(0deg) translate(0,0); }
+      15%  { transform: skewX(-0.4deg) translate(-1px, 0); }
+      30%  { transform: skewX(0.6deg) translate(1px, -1px); }
+      45%  { transform: skewX(-0.3deg) translate(0, 1px); }
+      60%  { transform: skewX(0.5deg) translate(-1px, 0); }
+      75%  { transform: skewX(-0.2deg) translate(1px, 1px); }
+      90%  { transform: skewX(0.4deg) translate(0, -1px); }
+      100% { transform: skewX(0deg) translate(0,0); }
+    }
+
+    /* Elements that jitter */
+    .jitter {
+      animation: jitter 0.4s ease-in-out infinite;
+    }
+    .jitter-soft {
+      animation: jitter-soft 0.6s ease-in-out infinite;
+    }
+    .jitter-text {
+      animation: jitter-text 0.35s linear infinite;
+    }
+
+    /* Hover-triggered jitter */
+    .jitter-hover:hover {
+      animation: jitter 0.3s ease-in-out infinite;
+    }
+
+    /* ─── NANO BANANA PRO ────────────────────────────────── */
+    .nano-banana {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink);
+      background: var(--banana);
+      padding: 4px 10px 4px 8px;
+      border-radius: 999px;
+      font-weight: 500;
+      position: relative;
+      cursor: default;
+      transition: transform 0.15s;
+      border: 1.5px solid var(--banana-dark);
+    }
+
+    .nano-banana:hover {
+      animation: jitter 0.25s ease-in-out infinite;
+      background: var(--banana-dark);
+    }
+
+    .nano-banana-icon {
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+
+    /* Big banana badge in hero */
+    .banana-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--banana);
+      color: var(--ink);
+      padding: 5px 14px 5px 10px;
+      border-radius: 999px;
+      font-weight: 500;
+      border: 1.5px solid var(--banana-dark);
+      animation: jitter-soft 0.7s ease-in-out infinite;
+    }
 
     /* ─── NAVBAR ─────────────────────────────────────────── */
     nav {
@@ -96,6 +195,40 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--ink); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-socials {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-social-link {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--ink-20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-60);
+      transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .nav-social-link:hover {
+      color: var(--ink);
+      border-color: var(--ink-60);
+      transform: translateY(-1px);
+    }
+    .nav-social-link svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
 
     .nav-cta {
       font-size: 0.82rem;
@@ -140,27 +273,109 @@
       position: relative;
       z-index: 2;
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 1fr 340px;
       gap: 48px;
-      align-items: flex-end;
+      align-items: center;
       width: 100%;
     }
 
     .hero-copy {
       padding: 22px 0 10px;
-      max-width: 600px;
     }
+
+    /* ─── SERVICE CARDS (hero right) ─────────────────────── */
+    .hero-services {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-self: center;
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(40px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .svc-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(8px);
+      cursor: default;
+      opacity: 0;
+      animation: slideInRight 0.5s cubic-bezier(0.22,1,0.36,1) forwards;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+
+    .svc-card:nth-child(1) { animation-delay: 0.1s; }
+    .svc-card:nth-child(2) { animation-delay: 0.22s; }
+    .svc-card:nth-child(3) { animation-delay: 0.34s; }
+    .svc-card:nth-child(4) { animation-delay: 0.46s; }
+    .svc-card:nth-child(5) { animation-delay: 0.58s; }
+
+    .svc-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.22);
+      transform: translateX(-4px);
+    }
+
+    .svc-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .svc-info { flex: 1; }
+
+    .svc-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.9);
+      line-height: 1.2;
+    }
+
+    .svc-platforms {
+      display: flex;
+      gap: 6px;
+      margin-top: 5px;
+    }
+
+    .svc-plat-icon {
+      width: 16px; height: 16px;
+      fill: rgba(255,255,255,0.35);
+      transition: fill 0.2s;
+    }
+
+    .svc-card:hover .svc-plat-icon { fill: rgba(255,255,255,0.7); }
+
+    .svc-arrow {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.2);
+      transition: color 0.2s, transform 0.2s;
+    }
+    .svc-card:hover .svc-arrow { color: rgba(255,255,255,0.6); transform: translateX(2px); }
 
     .hero-eyebrow {
       display: flex;
       align-items: center;
       gap: 10px;
       font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.45);
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      margin-bottom: 28px;
+      margin-bottom: 36px;
+      margin-top: -16px;
+      flex-wrap: wrap;
     }
 
     .hero-dot {
@@ -187,7 +402,7 @@
 
     .hero h1 em {
       font-style: normal;
-      color: #FFC107; /* yellow */
+      color: #FFC107;
     }
 
     .hero-meta {
@@ -225,6 +440,8 @@
       display: flex;
       gap: 12px;
       margin-top: 52px;
+      flex-wrap: wrap;
+      align-items: center;
     }
 
     .btn {
@@ -274,7 +491,6 @@
     }
 
     /* ─── SECTIONS ───────────────────────────────────────── */
-
     .section-label {
       display: flex;
       align-items: center;
@@ -534,7 +750,6 @@
     #capabilities h2.display { color: var(--white); }
     #capabilities .body-text { color: rgba(255,255,255,0.5); }
 
-    /* Blue accent line on section-label */
     .section-label::before {
       content: '';
       width: 24px;
@@ -563,7 +778,6 @@
     }
     .cap-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,255,255,0.16); }
 
-    /* Decorative shape per card */
     .cap-card::before {
       content: '';
       position: absolute;
@@ -572,7 +786,6 @@
     }
 
     .cap-card:nth-child(1)::before {
-      /* Play triangle — video editing — GREEN */
       top: 20px; right: 24px;
       width: 0; height: 0;
       border-style: solid;
@@ -584,7 +797,6 @@
     }
 
     .cap-card:nth-child(2)::before {
-      /* Diamond — graphic design — ORANGE */
       top: 14px; right: 20px;
       width: 44px; height: 44px;
       background: #f97316;
@@ -594,7 +806,6 @@
     }
 
     .cap-card:nth-child(3)::before {
-      /* Circle — brand identity — BLUE */
       top: 14px; right: 20px;
       width: 48px; height: 48px;
       border-radius: 50%;
@@ -604,7 +815,6 @@
     }
 
     .cap-card:nth-child(4)::before {
-      /* Folded page — presentations — PURPLE */
       top: 10px; right: 18px;
       width: 40px; height: 52px;
       background: rgba(168,85,247,0.2);
@@ -614,7 +824,6 @@
     }
 
     .cap-card:nth-child(5)::before {
-      /* Hexagon — product — RED/CORAL */
       top: 12px; right: 18px;
       width: 48px; height: 48px;
       background: #ef4444;
@@ -624,7 +833,6 @@
     }
 
     .cap-card:nth-child(6)::before {
-      /* Lightning bolt — advertising — AMBER */
       top: 10px; right: 22px;
       width: 32px; height: 52px;
       background: #f59e0b;
@@ -699,11 +907,33 @@
       line-height: 1.4;
     }
 
+    /* ─── TOOLS BOX — Nano Banana Pro style ──────────────── */
     .tools-box {
-      background: var(--electric);
+      background: var(--banana);
       padding: 28px 24px;
       border-radius: var(--radius);
       grid-column: span 2;
+      border: 2px solid var(--banana-dark);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: transform 0.1s;
+    }
+
+    .tools-box:hover {
+      animation: jitter 0.3s ease-in-out infinite;
+    }
+
+    /* Subtle banana texture overlay */
+    .tools-box::after {
+      content: '🍌';
+      position: absolute;
+      right: 16px;
+      bottom: 12px;
+      font-size: 2.8rem;
+      opacity: 0.18;
+      pointer-events: none;
+      filter: grayscale(0.2);
     }
 
     .tools-label {
@@ -711,16 +941,37 @@
       font-size: 0.7rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 12px;
+      color: rgba(0,0,0,0.5);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tools-label-badge {
+      font-size: 0.6rem;
+      background: var(--ink);
+      color: var(--banana);
+      padding: 2px 6px;
+      border-radius: 999px;
+      letter-spacing: 0.08em;
+      font-weight: 600;
     }
 
     .tools-list {
       font-family: 'Bebas Neue', sans-serif;
       font-size: 1.5rem;
       letter-spacing: 0.04em;
-      color: var(--white);
+      color: var(--ink);
       line-height: 1.3;
+    }
+
+    .tools-tagline {
+      font-size: 0.75rem;
+      color: rgba(0,0,0,0.45);
+      margin-top: 8px;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.05em;
     }
 
     /* ─── TESTIMONIALS ───────────────────────────────────── */
@@ -755,7 +1006,6 @@
     }
     .testi-card:hover { transform: translateY(-3px); }
 
-    /* Colored top accent bar per card */
     .testi-card::before {
       content: '';
       position: absolute;
@@ -858,6 +1108,38 @@
       margin-top: 16px;
     }
 
+    .contact-socials {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .contact-social-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      border: 1px solid var(--ink-20);
+      padding: 9px 18px;
+      border-radius: 999px;
+      transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.15s;
+    }
+    .contact-social-link:hover {
+      color: var(--electric);
+      border-color: var(--electric);
+      background: var(--electric-pale);
+      transform: translateY(-2px);
+    }
+    .contact-social-link svg {
+      width: 14px; height: 14px;
+      fill: currentColor;
+    }
+
     /* ─── FOOTER ─────────────────────────────────────────── */
     footer {
       background: var(--ink);
@@ -878,14 +1160,42 @@
       font-family: 'Bebas Neue', sans-serif;
     }
 
+    .footer-socials {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-social-link {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.4);
+      transition: color 0.2s, border-color 0.2s, transform 0.15s;
+    }
+    .footer-social-link:hover {
+      color: rgba(255,255,255,0.9);
+      border-color: rgba(255,255,255,0.5);
+      transform: translateY(-1px);
+    }
+    .footer-social-link svg {
+      width: 13px; height: 13px;
+      fill: currentColor;
+    }
+
     /* ─── RESPONSIVE ─────────────────────────────────────── */
     @media (max-width: 900px) {
       nav { padding: 16px 24px; }
       .nav-links { display: none; }
+      .nav-socials { display: none; }
       section { padding: 72px 24px; }
       .hero { padding: 100px 24px 48px; }
       .hero-inner { grid-template-columns: 1fr; gap: 32px; }
-      .hero-meta { display: none; }
+      .hero-services { display: none; }
       .hero-copy { max-width: 100%; }
       .hero h1 { font-size: clamp(36px, 10vw, 72px); max-width: 100%; line-height: 1.0; }
       .hero-tags-mobile {
@@ -905,6 +1215,7 @@
       .media-grid-3 { grid-template-columns: 1fr 1fr; }
       footer { flex-direction: column; gap: 12px; text-align: center; }
       .project-detail { padding: 40px 24px; }
+      .contact-socials { flex-wrap: wrap; }
     }
 
     @media (max-width: 560px) {
@@ -918,17 +1229,49 @@
 </head>
 <body>
 
+  <!-- SVG SPRITE for social icons -->
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="icon-linkedin" viewBox="0 0 24 24">
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+    </symbol>
+    <symbol id="icon-instagram" viewBox="0 0 24 24">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+    </symbol>
+    <symbol id="icon-behance" viewBox="0 0 24 24">
+      <path d="M6.938 4.503c.702 0 1.34.06 1.92.188.577.13 1.07.33 1.485.61.41.28.733.65.96 1.12.225.47.34 1.05.34 1.73 0 .74-.17 1.36-.507 1.86-.338.5-.837.9-1.502 1.22.906.26 1.576.72 2.022 1.37.448.66.665 1.45.665 2.36 0 .75-.13 1.39-.41 1.93-.28.54-.67 1-1.16 1.35-.48.348-1.05.6-1.7.757-.645.16-1.32.235-2.02.235H0V4.502h6.938zm-.34 5.65c.585 0 1.07-.14 1.44-.42.37-.28.558-.72.558-1.31 0-.33-.06-.61-.178-.83-.12-.22-.287-.4-.5-.53-.21-.13-.45-.22-.72-.27-.27-.05-.55-.08-.84-.08H3.13v3.44h3.468zm.17 5.91c.32 0 .625-.03.91-.09s.535-.17.75-.33c.21-.15.38-.36.506-.62.13-.26.19-.6.19-1.01 0-.8-.22-1.39-.67-1.74-.45-.35-1.05-.52-1.8-.52H3.13v4.31h3.638zm8.207-1.93c.34.33.83.5 1.47.5.46 0 .86-.12 1.19-.35.34-.23.55-.48.63-.74h2.34c-.37 1.16-.95 1.99-1.73 2.48-.79.5-1.74.74-2.86.74-.78 0-1.48-.13-2.1-.37-.63-.25-1.16-.6-1.6-1.05-.44-.45-.78-1-.99-1.63-.23-.63-.34-1.32-.34-2.07 0-.73.11-1.41.34-2.03.23-.63.56-1.17 1-1.62.44-.45.97-.8 1.59-1.06.62-.25 1.31-.38 2.06-.38.84 0 1.58.16 2.2.49.62.33 1.13.77 1.53 1.33.4.56.69 1.2.87 1.92.18.72.24 1.48.17 2.28h-6.97c0 .74.2 1.34.54 1.67zm2.6-5.78c-.27-.3-.71-.45-1.32-.45-.38 0-.7.07-.95.2-.26.13-.47.3-.62.5-.16.2-.27.42-.33.65-.06.24-.1.46-.11.66h3.96c-.08-.68-.31-1.27-.63-1.56zm-1.97-3.74H21v1.51h-5.59V5.01z"/>
+    </symbol>
+    <symbol id="icon-facebook" viewBox="0 0 24 24">
+      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+    </symbol>
+    <symbol id="icon-youtube" viewBox="0 0 24 24">
+      <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+    </symbol>
+  </svg>
+
   <!-- NAV -->
   <nav>
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;">
-    <a href="#home" class="nav-brand">TANMAY KATARIA</a>
-    <ul class="nav-links">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#capabilities">Services</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="#contact" class="nav-cta">Let's Talk →</a>
+      <a href="#home" class="nav-brand">TANMAY KATARIA</a>
+      <ul class="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#capabilities">Services</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="nav-socials">
+          <a href="https://www.linkedin.com/in/tanmay-kataria" target="_blank" rel="noopener" class="nav-social-link" title="LinkedIn">
+            <svg><use href="#icon-linkedin"/></svg>
+          </a>
+          <a href="https://www.instagram.com/tanmaykataria18" target="_blank" rel="noopener" class="nav-social-link" title="Instagram">
+            <svg><use href="#icon-instagram"/></svg>
+          </a>
+          <a href="https://www.behance.net/tanmaykataria" target="_blank" rel="noopener" class="nav-social-link" title="Behance">
+            <svg><use href="#icon-behance"/></svg>
+          </a>
+        </div>
+        <a href="#contact" class="nav-cta">Let's Talk →</a>
+      </div>
     </div>
   </nav>
 
@@ -936,38 +1279,98 @@
   <section id="home" class="hero">
     <div class="hero-bg-text">CREATE</div>
     <div class="container">
-    <div class="hero-inner" style="grid-template-columns: 1fr;">
-      <div>
-        <div class="hero-eyebrow">
-          <span class="hero-dot"></span>
-          Available for freelance work
+      <div class="hero-inner">
+        <!-- LEFT: copy -->
+        <div>
+          <div class="hero-eyebrow">
+            <span class="hero-dot"></span>
+            Available for freelance work
+          </div>
+          <h1>
+            Brand visuals,<br><span style="color:#006eef;">video editing</span><br>&amp; <em>design</em>
+          </h1>
+          <div class="hero-cta-row">
+            <a href="#work" class="btn btn-primary">View Work →</a>
+            <a href="#contact" class="btn btn-outline">Let's Work Together</a>
+          </div>
+          <div class="hero-tags-mobile">
+            <span class="hero-tag">Video Editing</span>
+            <span class="hero-tag">Graphic Design</span>
+            <span class="hero-tag">Social Media</span>
+            <span class="hero-tag">Reels &amp; Ads</span>
+            <span class="hero-tag">Company Profiles</span>
+          </div>
         </div>
-       <h1>
-  Brand visuals, <span style="color:#006eef;">video editing</span> &amp; <em>design</em>
-</h1>
-        <div class="hero-cta-row">
-          <a href="#work" class="btn btn-primary">View Work →</a>
-          <a href="#contact" class="btn btn-outline">Let's Work Together</a>
-        </div>
-        <div class="hero-tags-mobile">
-          <span class="hero-tag">Video Editing</span>
-          <span class="hero-tag">Graphic Design</span>
-          <span class="hero-tag">Brand Identity</span>
-          <span class="hero-tag">Reels &amp; Ads</span>
-          <span class="hero-tag">Company Profiles</span>
-        </div>
-      </div>
-      <div class="hero-meta">
-        <div class="hero-tags">
-          <span class="hero-tag">Video Editing</span>
-          <span class="hero-tag">Graphic Design</span>
-          <span class="hero-tag">Brand Identity</span>
-          <span class="hero-tag">Reels &amp; Ads</span>
-          <span class="hero-tag">Company Profiles</span>
+
+        <!-- RIGHT: service cards -->
+        <div class="hero-services">
+
+          <div class="svc-card">
+            <div class="svc-icon" style="background:rgba(34,197,94,0.15);">🎬</div>
+            <div class="svc-info">
+              <div class="svc-name">Video Editing</div>
+              <div class="svc-platforms">
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-instagram"/></svg>
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-youtube"/></svg>
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-facebook"/></svg>
+              </div>
+            </div>
+            <span class="svc-arrow">→</span>
+          </div>
+
+          <div class="svc-card">
+            <div class="svc-icon" style="background:rgba(249,115,22,0.15);">🎨</div>
+            <div class="svc-info">
+              <div class="svc-name">Graphic Design</div>
+              <div class="svc-platforms">
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-instagram"/></svg>
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-linkedin"/></svg>
+              </div>
+            </div>
+            <span class="svc-arrow">→</span>
+          </div>
+
+          <div class="svc-card">
+            <div class="svc-icon" style="background:rgba(168,85,247,0.15);">📱</div>
+            <div class="svc-info">
+              <div class="svc-name">Social Media</div>
+              <div class="svc-platforms">
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-instagram"/></svg>
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-facebook"/></svg>
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-linkedin"/></svg>
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-youtube"/></svg>
+              </div>
+            </div>
+            <span class="svc-arrow">→</span>
+          </div>
+
+          <div class="svc-card">
+            <div class="svc-icon" style="background:rgba(239,68,68,0.15);">⚡</div>
+            <div class="svc-info">
+              <div class="svc-name">Reels &amp; Ads</div>
+              <div class="svc-platforms">
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-instagram"/></svg>
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-youtube"/></svg>
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-facebook"/></svg>
+              </div>
+            </div>
+            <span class="svc-arrow">→</span>
+          </div>
+
+          <div class="svc-card">
+            <div class="svc-icon" style="background:rgba(59,130,246,0.15);">📋</div>
+            <div class="svc-info">
+              <div class="svc-name">Company Profiles</div>
+              <div class="svc-platforms">
+                <svg class="svc-plat-icon" viewBox="0 0 24 24"><use href="#icon-linkedin"/></svg>
+              </div>
+            </div>
+            <span class="svc-arrow">→</span>
+          </div>
+
         </div>
       </div>
     </div>
-    </div><!-- /.container -->
     <div class="hero-scroll">
       <span class="hero-scroll-line"></span>
       Scroll to explore
@@ -988,7 +1391,6 @@
 
     <div class="project-grid">
 
-      <!-- my1hour — large card -->
       <a class="project-card" href="#project-my1hour">
         <img class="project-img" src="./images/my1hour/victoryvalleykidsyoga (1).png" alt="my1hour" loading="lazy" />
         <div class="project-overlay"></div>
@@ -1004,7 +1406,6 @@
         </div>
       </a>
 
-      <!-- SKG Builders -->
       <a class="project-card" href="#project-skg">
         <div class="project-color-bg" style="background:linear-gradient(135deg,#f19172,#b8380f);">SKG</div>
         <div class="project-overlay"></div>
@@ -1019,7 +1420,6 @@
         </div>
       </a>
 
-      <!-- AMCO -->
       <a class="project-card" href="#project-amco">
         <div class="project-color-bg" style="background:linear-gradient(135deg,#1f6c5c,#07372d);">AMCO</div>
         <div class="project-overlay"></div>
@@ -1034,7 +1434,6 @@
         </div>
       </a>
 
-      <!-- Spiral -->
       <a class="project-card" href="#project-spiral">
         <img class="project-img" src="./videos/Spiral/12-Cover.jpg" alt="Spiral Growth Strategy" loading="lazy" />
         <div class="project-overlay"></div>
@@ -1049,7 +1448,6 @@
         </div>
       </a>
 
-      <!-- Adometer -->
       <a class="project-card" href="#project-adometer">
         <div class="project-color-bg" style="background:linear-gradient(135deg,#0033ff,#001aaa);">ADS</div>
         <div class="project-overlay"></div>
@@ -1064,7 +1462,6 @@
         </div>
       </a>
 
-      <!-- Melodiverse -->
       <a class="project-card" href="#project-melodiverse">
         <img class="project-img" src="./images/melodiverse/1.png" alt="Melodiverse" loading="lazy" />
         <div class="project-overlay"></div>
@@ -1081,7 +1478,7 @@
 
     </div>
 
-    <!-- ── PROJECT DETAILS ────────────────────────────── -->
+    <!-- PROJECT DETAILS -->
 
     <article id="project-my1hour" class="project-detail">
       <a href="#work" class="detail-back">← Back to work</a>
@@ -1248,7 +1645,7 @@
       <div class="about-body">
         <h2 class="display" style="margin-bottom:36px;">A creative<br>with range</h2>
         <p>I'm a video editor and graphic designer focused on content that feels current, clean, and useful for real business goals. My work spans branding, digital content design, short-form video editing, company profiles, brochures, product visuals, and promotional creatives.</p>
-        <p>I enjoy working across different industries and content types. I use Canva and CapCut on PC to create polished visual content, brand assets, and fast-turnaround edits.</p>
+        <p>I work platform-native — using Canva and CapCut to move fast without sacrificing polish. That means less back-and-forth, faster turnaround, and content that's actually built for how people consume it online.</p>
         <p>Open to freelance projects, remote work, and creative roles in Toronto, Mississauga, and beyond.</p>
       </div>
       <div class="about-stats">
@@ -1269,8 +1666,12 @@
           <div class="stat-desc">reels to cut,<br>brands to build</div>
         </div>
         <div class="tools-box">
-          <div class="tools-label">Tools</div>
+          <div class="tools-label">
+            Tools
+            <span class="tools-label-badge">Nano Banana Pro ✦</span>
+          </div>
           <div class="tools-list">Canva · CapCut · AI Image Tools</div>
+          <div class="tools-tagline">Platform-native tools. Fast delivery. No fuss.</div>
         </div>
       </div>
     </div>
@@ -1287,7 +1688,6 @@
     </div>
 
     <div class="testi-grid">
-
       <div class="testi-card">
         <div class="testi-quote">"</div>
         <p class="testi-text">Tanmay handled 10 months of content design for my1hour seamlessly. His ability to adapt across kids yoga, fitness reels, and social graphics — all while keeping the brand consistent — was impressive.</p>
@@ -1323,7 +1723,6 @@
           </div>
         </div>
       </div>
-
     </div>
 
     <div style="text-align:center;margin-top:32px;">
@@ -1339,13 +1738,39 @@
     <br>
     <a href="mailto:tanmaykataria18@gmail.com" class="contact-email">tanmaykataria18@gmail.com</a>
     <p class="contact-meta">Based in Mississauga, ON · Available for remote &amp; local projects</p>
+
+    <div class="contact-socials">
+      <a href="https://www.linkedin.com/in/tanmay-kataria" target="_blank" rel="noopener" class="contact-social-link">
+        <svg viewBox="0 0 24 24"><use href="#icon-linkedin"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://www.instagram.com/tanmaykataria18" target="_blank" rel="noopener" class="contact-social-link">
+        <svg viewBox="0 0 24 24"><use href="#icon-instagram"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.behance.net/tanmaykataria" target="_blank" rel="noopener" class="contact-social-link">
+        <svg viewBox="0 0 24 24"><use href="#icon-behance"/></svg>
+        Behance
+      </a>
+    </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <span class="footer-brand">TANMAY KATARIA</span>
+    <div class="footer-socials">
+      <a href="https://www.linkedin.com/in/tanmay-kataria" target="_blank" rel="noopener" class="footer-social-link" title="LinkedIn">
+        <svg><use href="#icon-linkedin"/></svg>
+      </a>
+      <a href="https://www.instagram.com/tanmaykataria18" target="_blank" rel="noopener" class="footer-social-link" title="Instagram">
+        <svg><use href="#icon-instagram"/></svg>
+      </a>
+      <a href="https://www.behance.net/tanmaykataria" target="_blank" rel="noopener" class="footer-social-link" title="Behance">
+        <svg><use href="#icon-behance"/></svg>
+      </a>
+    </div>
     <span>Video Editor · Graphic Designer · Brand Creator</span>
-    <span>© 2025</span>
+    <span>© 2026</span>
   </footer>
 
 </body>
