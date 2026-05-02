@@ -42,6 +42,9 @@ a {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  
+margin-top: 80px;
+
 
   background: linear-gradient(
     135deg,
