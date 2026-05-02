@@ -123,6 +123,7 @@ a {
 
 .hero-copy {
   padding: 22px 0 10px;
+  max-width: 600px;
 }
 
 .eyebrow {
@@ -136,7 +137,7 @@ a {
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(3.8rem, 7vw, 6rem);
+  font-size: clamp(3rem, 5vw, 5rem);
   line-height: 1.1;
   max-width: 620px;
 
@@ -726,4 +727,43 @@ a {
 /* 5. QUICK DEBUG (REMOVE LATER) */
 .hero {
   opacity: 1 !important;
+}
+
+/* ===== HERO LAYOUT FIX ===== */
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero-copy {
+  max-width: 600px;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: 1.1;
+}
+
+.hero-panel {
+  max-width: 420px;
+  width: 100%;
+}
+
+/* ===== MOBILE FIX ===== */
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-copy {
+    text-align: left;
+  }
+
+  .hero-panel {
+    justify-self: start;
+  }
 }
