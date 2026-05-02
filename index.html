@@ -1775,101 +1775,10 @@
 }
 </style>
   <script>
-const grid = document.getElementById("grid");
-let interval;
-let paused = false;
 
-function shuffle() {
-  if (paused) return;
 
-  let items = Array.from(grid.children);
-  let movable = items.filter(el => !el.classList.contains("frozen"));
 
-  // smooth shrink before move
-  movable.forEach(el => {
-    el.style.transform = "scale(0.9)";
-  });
 
-  setTimeout(() => {
-    movable.sort(() => Math.random() - 0.5);
-
-    let i = 0;
-    items.forEach(el => {
-      if (!el.classList.contains("frozen")) {
-        grid.appendChild(movable[i]);
-        i++;
-      }
-    });
-
-    // expand back
-    movable.forEach(el => {
-      el.style.transform = "scale(1)";
-    });
-
-    checkRows();
-  }, 300);
-}
-
-function checkRows() {
-  const cells = document.querySelectorAll(".cell");
-  const result = document.getElementById("result");
-
-  const rows = [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8]
-  ];
-
-  let completedRows = 0;
-
-  rows.forEach(row => {
-    let types = row.map(i => {
-      if (cells[i].classList.contains("video")) return "video";
-      if (cells[i].classList.contains("design")) return "design";
-      if (cells[i].classList.contains("social")) return "social";
-    });
-
-    if (types.every(t => t === types[0])) {
-      completedRows++;
-
-      row.forEach(i => {
-        cells[i].classList.add("frozen");
-      });
-
-      showResult(types[0]);
-    }
-  });
-
-  if (completedRows === 3) {
-    paused = true;
-    clearInterval(interval);
-
-    setTimeout(() => {
-      resetGame();
-    }, 5000);
-  }
-}
-
-function showResult(type) {
-  const result = document.getElementById("result");
-
-  if (type === "video") result.innerText = "🎬 Video Editing";
-  if (type === "design") result.innerText = "🎨 Graphic Design";
-  if (type === "social") result.innerText = "📱 Social Media";
-}
-
-function resetGame() {
-  const cells = document.querySelectorAll(".cell");
-
-  cells.forEach(c => c.classList.remove("frozen"));
-
-  paused = false;
-  interval = setInterval(shuffle, 1200);
-}
-
-// start
-interval = setInterval(shuffle, 1200);
-</script>
 
 </body>
 </html>
